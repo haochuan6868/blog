@@ -1,9 +1,3 @@
 /e/zdzx/blog/trunk/config/db.php
 E:\zdzx\blog\trunk\config\db.php
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
 trunk/config/db.php
