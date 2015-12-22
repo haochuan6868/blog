@@ -14,6 +14,6 @@ class IndexController extends Controller
     public $layout = 'main';
     public function actionIndex()
     {
-        echo 'aaa';
+        return $this->render('index');
     }
 }
