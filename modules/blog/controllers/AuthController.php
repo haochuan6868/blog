@@ -9,6 +9,7 @@ namespace app\modules\blog\controllers;
 
 use Yii;
 use app\modules\blog\models\Admin;
+use app\modules\blog\models\Auth;
 use yii\web\Controller;
 use yii\web\User;
 
@@ -20,8 +21,16 @@ class AuthController extends Controller
     {
         if(!empty($_POST)) {
             $username = $_POST['username'];
-            $identity = Admin::findOne(['username' => $username]);
+            $identity = Auth::findOne(['username' => $username]);
             Yii::$app->user->login($identity);
+            $r = Yii::$app->user->identity;
+//            var_dump($r);
+            $isGuest = Yii::$app->user->isGuest;
+            if($isGuest === false){
+                $this->redirect(['/blog/admin']);
+            }else{
+                var_dump($isGuest);
+            }
         }
         return $this->render('login');
     }

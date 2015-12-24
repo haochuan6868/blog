@@ -15,8 +15,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-//            'identityClass' => 'app\modules\blog\models\auth\login',
+//            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\blog\models\auth',
             'enableAutoLogin' => true,
             'loginUrl' => '/index.php?r=blog/auth/login'
         ],

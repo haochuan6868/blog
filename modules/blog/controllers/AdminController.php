@@ -30,6 +30,7 @@ class AdminController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['index'],
                         'roles' => ['@'],
                     ]
                 ]

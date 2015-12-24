@@ -8,12 +8,21 @@
 namespace app\modules\blog\controllers;
 
 use yii\web\Controller;
+use app\modules\blog\models\Content;
+use app\modules\blog\models\ContentData;
 
 class IndexController extends Controller
 {
     public $layout = 'main';
     public function actionIndex()
     {
-        return $this->render('index');
+        $content = Content::find()->joinWith('allData')->all();
+        $data = array();
+        foreach($content as $value){
+            $val['title'] = $value->title;
+            $val['content'] = $value->allData->content_data;
+            $data['data'][] = $val;
+        }
+        return $this->render('index',$data);
     }
 }
