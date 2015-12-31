@@ -38,27 +38,27 @@ echo Html::jsFile('@web/css/metro/bootstrap-markdown/lib/markdown.js');
                         <div class="caption">
                             <i class="fa fa-gift"></i>Advance Validation
                         </div>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse">
-                            </a>
-                            <a href="#portlet-config" data-toggle="modal" class="config">
-                            </a>
-                            <a href="javascript:;" class="reload">
-                            </a>
-                            <a href="javascript:;" class="remove">
-                            </a>
-                        </div>
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
                         <form action="index.php?r=blog/admin/content-add" method="POST" id="form_sample_3" class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-1">Title <span class="required">
-										* </span>
-                                    </label>
+                                    <label class="control-label col-md-1">Title:</label>
                                     <div class="col-md-7">
                                         <input type="text" name="title" data-required="1" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1">Category:</label>
+                                    <div class="col-md-7">
+                                        <select class="form-control" name="category_id">
+                                            <?php
+                                                foreach($categories as $category){
+                                                    echo "<option value=".$category['id'].">" . $category["category"] . "</option>";
+                                                }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">

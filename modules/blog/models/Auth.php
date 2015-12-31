@@ -7,16 +7,17 @@
  */
 namespace app\modules\blog\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 class Auth extends ActiveRecord implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+//    public $id;
+//    public $username;
+//    public $password;
+//    public $authKey;
+//    public $accessToken;
 
     public static function tableName()
     {
@@ -24,11 +25,13 @@ class Auth extends ActiveRecord implements IdentityInterface
     }
     public static function findIdentity($id)
     {
+//        $temp = parent::find()->where(['id'=>$id])->one();
+//        return isset($temp)?new static($temp):null;
         return static::findOne($id);
     }
     public static function findIdentityByAccessToken($token, $type = null)
     {
-
+        return static::findOne(['access_token' => $token]);
     }
     public function getId()
     {
@@ -36,10 +39,10 @@ class Auth extends ActiveRecord implements IdentityInterface
     }
     public function getAuthKey()
     {
-        return $this->authKey;
+        //return $this->authKey;
     }
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->getAuthKey() === $authKey;
     }
 }

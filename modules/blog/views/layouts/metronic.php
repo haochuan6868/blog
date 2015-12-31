@@ -80,7 +80,7 @@
                 </li>
                 <!--Index-->
                 <li class="start ">
-                    <a href="javascript:;">
+                    <a href="index.php?r=blog/admin/">
                         <i class="icon-home"></i>
                         <span class="title">Home</span>
                     </a>
@@ -88,7 +88,7 @@
                 <!--User-->
                 <li>
                     <a href="javascript:;">
-                        <i class="icon-user"></i>
+                        <i class="icon-users"></i>
                         <span class="title">Admin</span>
                         <span class="arrow "></span>
                     </a>
@@ -98,6 +98,22 @@
                         </li>
                         <li>
                             <a href="#">Admin Add</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Category-->
+                <li>
+                    <a href="javascript:;">
+                        <i class="icon-list"></i>
+                        <span class="title">Category</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="index.php?r=blog/admin/category-list">Category List</a>
+                        </li>
+                        <li>
+                            <a href="index.php?r=blog/admin/category-add">Category Add</a>
                         </li>
                     </ul>
                 </li>

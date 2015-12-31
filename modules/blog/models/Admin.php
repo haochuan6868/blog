@@ -7,39 +7,61 @@
  */
 namespace app\modules\blog\models;
 
-use yii\db\ActiveRecord;
+use Yii;
+use yii\base\Model;
 
-class Admin extends ActiveRecord
+use app\modules\blog\models\Auth;
+
+class Admin extends Model
 {
-    public static function tableName()
-    {
-        return 'blog_admin';
-    }
+    public $username;
+    public $password;
 
-    public function rules()
-    {
+    private $_user = false;
+
+    public function rules(){
+
         return [
-            [['username', 'password'], 'required'],
-            [['username'], 'string', 'max' => 50],
-            [['password'], 'string', 'max' => 50],
+            [['username', 'password'], 'required','message'=>'{attribute}不能为空！']
         ];
     }
-
     public function attributeLabels()
     {
         return [
-            'username' => 'username',
-            'password' => 'password'
+            'username' => '账号',
+            'password' => '密码',
         ];
     }
 
-    public function setPassword($password)
+    public function login()
     {
-        $this->password = md5($password);
+        if ($this->validate()){
+            return Yii::$app->user->login($this->getUser(), 3600 * 24 * 30);
+        }else {
+            return false;
+        }
     }
 
-    public function validatePassword($password)
+    public function validatePassword($attribute, $params)
     {
-        return $this->password === md5($password);
+        if (!$this->hasErrors())
+        {
+            $user = $this->getUser();
+
+            if (!$user)
+            {
+                $this->addError($attribute, '');
+            }
+
+        }
+    }
+
+    public function getUser()
+    {
+        if ($this->_user === false)
+        {
+            $this->_user = Auth::find()->where(['username'=>$this->username,'password'=>$this->password])->one();
+        }
+        return $this->_user;
     }
 }

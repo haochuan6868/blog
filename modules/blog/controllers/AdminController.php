@@ -11,11 +11,12 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\modules\blog\models\Form;
-//use app\modules\blog\models\Admin;
+use app\modules\blog\models\Admin;
 use app\modules\blog\models\Content;
 use app\modules\blog\models\ContentData;
+use app\modules\blog\models\Category;
 use yii\web\user;
-use app\models\Admin;
+use app\modules\blog\models\Auth;
 
 class AdminController extends Controller
 {
@@ -26,27 +27,44 @@ class AdminController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index','content-add'],
+                //'only' => ['index','content-add'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => [
+                            'index',
+                            'content-add','content-list','content-view',
+                            'category-add','category-list'
+                        ],
                         'roles' => ['@'],
                     ]
                 ]
             ]
         ];
     }
-
+    /*
+     * index
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
+
+    /*
+     * login logout
+     */
     public function actionLogin()
     {
         return $this->render("login");
     }
+    public function actionLogout()
+    {
 
+    }
+
+    /*
+     * content
+     */
     public function actionContentAdd()
     {
         $data = Yii::$app->request->post();
@@ -56,12 +74,17 @@ class AdminController extends Controller
             $title = $data['title'];
             $content = $data['content'];
             $contentModel->title = $title;
-            $contentModel->save();
+            $contentModel->category_id = $data['category_id'];
+            $result = $contentModel->save();
             $contentDataModel->content_id = $contentModel->primaryKey;
             $contentDataModel->content_data = $content;
-            $contentDataModel->save();
+            $dataResult = $contentDataModel->save();
+            if($result && $dataResult){
+                return $this->redirect(['content-list']);
+            }
         } else {
-            return $this->render('contentAdd');
+            $data['categories'] = Category::find()->indexBy('id')->all();
+            return $this->render('contentAdd',$data);
         }
     }
     public function actionContentView()
@@ -75,10 +98,29 @@ class AdminController extends Controller
     }
     public function actionContentList()
     {
-//        $identity = Admin::findOne(['username' => 'haochuan']);
-//        Yii::$app->user->login($identity);
-//        var_dump(Yii::$app->user);exit;
         $data['content'] = Content::find()->indexBy('id')->all();
         return $this->render('contentList',$data);
+    }
+
+    /*
+     * category
+     */
+    public function actionCategoryAdd()
+    {
+        $data = Yii::$app->request->post();
+        if(!empty($data)){
+            $model = new Category();
+            $model->category = $data['category'];
+            $result = $model->save();
+            if($result){
+                return $this->redirect(['category-list']);
+            }
+        }
+        return $this->render('categoryAdd');
+    }
+    public function actionCategoryList()
+    {
+        $data['content'] = Category::find()->indexBy('id')->all();
+        return $this->render('categoryList',$data);
     }
 }

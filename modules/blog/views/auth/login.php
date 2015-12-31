@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +27,15 @@
     <link id="style_color" href="css/metro/darkblue.css" rel="stylesheet" type="text/css"/>
     <link href="css/metro/custom.css" rel="stylesheet" type="text/css"/>
 </head>
+<?php $form = ActiveForm::begin([
+    'action' => ['auth/login'],
+    'method'=>'post',
+]);?>
 <body class="login">
 <div class="logo"></div>
 <div class="menu-toggler sidebar-toggler"></div>
 <div class="content">
-    <form class="login-form" action="index.php?r=blog/auth/login" method="post">
+<!--    <form class="login-form" action="index.php?r=blog/auth/login" method="post">-->
         <h3 class="form-title">Login to your account</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
@@ -38,26 +46,30 @@
             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
             <label class="control-label visible-ie8 visible-ie9">Username</label>
             <div class="input-icon">
-                <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>
+<!--                <i class="fa fa-user"></i>-->
+                <?= $form->field($model, 'username') ?>
+<!--                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username"/>-->
             </div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">Password</label>
             <div class="input-icon">
-                <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+                <?= $form->field($model, 'password')->passwordInput() ?>
+<!--                <i class="fa fa-lock"></i>-->
+<!--                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>-->
             </div>
         </div>
         <div class="form-actions">
 <!--<label class="checkbox"><input type="checkbox" name="remember" value="1"/> Remember me </label>-->
-            <button type="submit" class="btn blue pull-right">
-                Login <i class="m-icon-swapright m-icon-white"></i>
-            </button>
+<!--            <button type="submit" class="btn blue pull-right">-->
+<!--                Login <i class="m-icon-swapright m-icon-white"></i>-->
+<!--            </button>-->
+            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
-    </form>
+<!--    </form>-->
 </div>
 </body>
+<?php ActiveForm::end(); ?>
 <script src="js/metro/jquery.min.js" type="text/javascript"></script>
 <script src="js/metro/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="css/metro/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

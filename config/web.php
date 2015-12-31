@@ -16,7 +16,7 @@ $config = [
         ],
         'user' => [
 //            'identityClass' => 'app\models\User',
-            'identityClass' => 'app\modules\blog\models\auth',
+            'identityClass' => 'app\modules\blog\models\Auth',
             'enableAutoLogin' => true,
             'loginUrl' => '/index.php?r=blog/auth/login'
         ],
