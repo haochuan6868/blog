@@ -37,6 +37,9 @@ class Auth extends ActiveRecord implements IdentityInterface
     {
         return $this->id;
     }
+    public  function  getUser(){
+        return $this->username;
+    }
     public function getAuthKey()
     {
         //return $this->authKey;
