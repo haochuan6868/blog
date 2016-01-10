@@ -22,6 +22,8 @@
     </div>
 </nav>
 <div class="container" style="margin-top: 80px">
+    Home > PHP > 文章内容 >
+    <hr>
 <h2><?=$content['title'];?></h2>
 <h6><?=$content->allData['content_data'];?></h6>
 </div>
