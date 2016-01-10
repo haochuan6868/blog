@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: haochuan
- * Date: 2016/1/4
- * Time: 11:08
+ * Date: 2016/1/10
+ * Time: 14:19
  */
 ?>
 <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
@@ -22,11 +22,6 @@
     </div>
 </nav>
 <div class="container" style="margin-top: 80px">
-    <div class="row">
-        <ul class="list-group">
-            <?php foreach ($data as $value): ?>
-                <li class="list-group-item"><a href="index.php?r=blog/index/content&id=<?=$value['id'];?>"><?=$value['title'];?></a></li>
-            <?php endforeach;?>
-        </ul>
-    </div>
+<h2><?=$content['title'];?></h2>
+<h6><?=$content->allData['content_data'];?></h6>
 </div>

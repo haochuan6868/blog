@@ -38,8 +38,10 @@ class IndexController extends Controller
     public function actionContent()
     {
         $contentId = Yii::$app->request->get('id','');
-        $content = Content::find()->where(['id'=>$contentId])->joinWith('allData')->one();
-        print_r($content);
-        //$contentData = $content->allData();
+        $content = Content::findOne($contentId);
+        $data['content'] = $content;
+        $data['contentData'] = $content->allData;
+        $data['categories'] = Category::find()->asArray()->all();
+        return $this->render('content',$data);
     }
 }
