@@ -21,6 +21,7 @@ class IndexController extends Controller
         $content = Content::find()->joinWith('allData')->all();
         $data = array();
         foreach($content as $value){
+            $val['id'] = $value->id;
             $val['title'] = $value->title;
             $val['content'] = $value->allData->content_data;
             $data['data'][] = $val;

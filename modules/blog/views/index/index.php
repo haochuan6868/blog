@@ -54,6 +54,26 @@
     <div class="container">
         <div class="row">
             <main class="col-md-8 main-content">
+                <?php foreach ($data as $value): ?>
+                    <article id=61 class="post tag-lumen tag-xin-ban-ben-fa-bu">
+                        <div class="post-head">
+                            <h1 class="post-title"><a href="/post/lumen-5-2-is-released/"><?=$value['title'];?></a></h1>
+                            <div class="post-meta">
+                                <span class="author">作者：<a href="/author/wangsai/">haochuan</a></span> &bull;
+                                <time class="post-date" datetime="2016年1月8日星期五上午10点33分" title="2016年1月8日星期五上午10点33分">2016年1月8日</time>
+                            </div>
+                        </div>
+                        <div class="featured-media">
+                            <a href="/post/lumen-5-2-is-released/"><img src="http://image.golaravel.com/e/d5/0dd5c3a731c98638a076afe8ce6de.png" alt="Lumen 5.2 正式发布"></a>
+                        </div>
+                        <div class="post-content">
+                            <p><?=$value['content'];?></p>
+                        </div>
+                        <div class="post-permalink">
+                            <a href="index.php?r=blog/index/content&id=<?=$value['id'];?>" class="btn btn-default">阅读全文</a>
+                        </div>
+                    </article>
+                <?php endforeach;?>
                 <article id=61 class="post tag-lumen tag-xin-ban-ben-fa-bu">
 
                     <div class="post-head">
