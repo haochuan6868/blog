@@ -135,7 +135,7 @@
                     </form>
                 </li>
                 <!--Index-->
-                <li class="start ">
+                <li class="active open">
                     <a href="index.php?r=blog/admin/">
                         <i class="icon-home"></i>
                         <span class="title">Home</span>
@@ -174,14 +174,14 @@
                     </ul>
                 </li>
                 <!--Content-->
-                <li class="active">
+                <li>
                     <a href="javascript:;">
                         <i class="icon-docs"></i>
                         <span class="title">Article</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="active">
+                        <li>
                             <a href="index.php?r=blog/admin/content-list">Article List</a>
                         </li>
                         <li>
@@ -205,6 +205,15 @@
         QuickSidebar.init(); // init quick sidebar
         Demo.init(); // init demo features
         TableManaged.init();
+    });
+    $(function () {
+        $(".page-sidebar-menu li").click(function () {
+            $("li[class='active open']").removeAttr("class");
+            $(this).addClass("active open");
+        });
+        $(".page-sidebar-menu li").click(function () {
+            $("ul li[class='sub-menu']").css('display','block');
+        });
     });
 </script>
 </body>
