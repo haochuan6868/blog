@@ -33,7 +33,7 @@ class AdminController extends Controller
                         'allow' => true,
                         'actions' => [
                             'index',
-                            'content-add','content-list','content-view',
+                            'content-add','content-list','content-view','content-del',
                             'category-add','category-list'
                         ],
                         'roles' => ['@'],
@@ -100,6 +100,17 @@ class AdminController extends Controller
     {
         $data['content'] = Content::find()->indexBy('id')->all();
         return $this->render('contentList',$data);
+    }
+    public function actionContentDel()
+    {
+        $id = Yii::$app->request->get('id');
+        $content = Content::findOne(['id'=>$id]);
+        $contentResult = $content->delete();
+        $contentData = ContentData::findOne(['content_id'=>$id]);
+        $contentDataResult = $contentData->delete();
+        if(($contentResult > 0) && ($contentDataResult > 0 )){
+            echo 'success';
+        }
     }
 
     /*

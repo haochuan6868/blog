@@ -29,6 +29,7 @@
     <link href="css/metro/layout.css" rel="stylesheet" type="text/css"/>
     <link id="style_color" href="css/metro/darkblue.css" rel="stylesheet" type="text/css"/>
     <link href="css/metro/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery-confirm.min.css" rel="stylesheet" type="text/css"/>
 
     <script src="js/metro/jquery.min.js" type="text/javascript"></script>
     <script src="js/metro/jquery-migrate.min.js" type="text/javascript"></script>
@@ -48,6 +49,7 @@
     <script src="js/metro/quick-sidebar.js" type="text/javascript"></script>
     <script src="js/metro/demo.js" type="text/javascript"></script>
     <script src="js/metro/table-managed.js"></script>
+    <script src="js/jquery-confirm.min.js"></script>
 </head>
 
 <body class="page-header-fixed page-quick-sidebar-over-content ">
