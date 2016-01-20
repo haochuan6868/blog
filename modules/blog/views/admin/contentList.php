@@ -60,7 +60,7 @@
                                 echo '<td>'.$value['id'].'</td>';
                                 echo "<td><a href=index.php?r=blog/admin/content-view&id=".$value['id'].">".$value['title']."</a></td>";
                                 echo '<td>'.$value['ctime'].'</td>';
-                                echo '<td><a href="" class="btn default btn-xs purple"><i class="fa fa-edit"></i> Edit </a>
+                                echo '<td><a href=index.php?r=blog/admin/content-edit&id='.$value['id'].' class="btn default btn-xs purple"><i class="fa fa-edit"></i> Edit </a>
                                           <a href="javascript:;" class="btn default btn-xs black" onclick="delConent('.$value['id'].')"><i class="fa fa-trash-o"></i> Delete </a></td>';
                                 echo '</tr>';
                             }

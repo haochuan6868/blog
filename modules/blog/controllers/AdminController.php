@@ -33,7 +33,7 @@ class AdminController extends Controller
                         'allow' => true,
                         'actions' => [
                             'index',
-                            'content-add','content-list','content-view','content-del',
+                            'content-add','content-list','content-view','content-del','content-edit',
                             'category-add','category-list'
                         ],
                         'roles' => ['@'],
@@ -112,7 +112,23 @@ class AdminController extends Controller
             echo 'success';
         }
     }
+    public function actionContentEdit()
+    {
+        $data = Yii::$app->request->post();
+        if(!empty($data)){
 
+        }else{
+            $id = Yii::$app->request->get('id');
+            $content = Content::findOne($id);
+            $contentData = $content->allData;
+            $data['id']  = $content['id'];
+            $data['title']  = $content['title'];
+            $data['categoryId']  = $content['category_id'];
+            $data['content'] = $contentData['content_data'];
+            $data['categories'] = Category::find()->indexBy('id')->all();
+            return $this->render('contentEdit',$data);
+        }
+    }
     /*
      * category
      */
