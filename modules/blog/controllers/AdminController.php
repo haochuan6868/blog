@@ -161,9 +161,19 @@ class AdminController extends Controller
     public function actionCategoryEdit()
     {
         $id = Yii::$app->request->get('id');
-        $category = Category::findOne($id);
-        print_r($category);exit;
-        return $this->render('categoryEdit',$category);
+        $data = Yii::$app->request->post();
+        if(!empty($data)){
+            $model = Category::findOne($id);
+            $model->category  = $data['category'];
+            $categoryResult = $model->save();
+            if($categoryResult == true){
+                return $this->redirect(['category-list']);
+            }
+        }else {
+            $category = Category::findOne($id);
+            $data['data'] = $category;
+            return $this->render('categoryEdit', $data);
+        }
     }
     public function actionCategoryDel()
     {

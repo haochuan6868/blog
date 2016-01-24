@@ -33,11 +33,11 @@
                 </div>
             </div>
             <div class="portlet-body form">
-                <form role="form" method="post" action="index.php?r=blog/admin/category-add">
+                <form role="form" method="post" action="index.php?r=blog/admin/category-edit&id=<?= $_GET['id'];?>">
                     <div class="form-body">
                         <div class="form-group form-md-line-input form-md-floating-label has-info">
-                            <input type="text" class="form-control input-lg" id="form_control_1" name="category">
-                            <label for="form_control_1">Input Category Name ...</label>
+                            <input type="text" class="form-control input-lg" id="form_control_1" name="category" value="<?=$data['category'];?>">
+<!--                            <label for="form_control_1">Input Category Name ...</label>-->
                         </div>
                     </div>
                     <div class="form-actions noborder">
