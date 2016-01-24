@@ -50,6 +50,7 @@
     <script src="js/metro/demo.js" type="text/javascript"></script>
     <script src="js/metro/table-managed.js"></script>
     <script src="js/jquery-confirm.min.js"></script>
+    <script src="js/table-editable.js"></script>
 </head>
 
 <body class="page-header-fixed page-quick-sidebar-over-content ">
@@ -207,6 +208,7 @@
         QuickSidebar.init(); // init quick sidebar
         Demo.init(); // init demo features
         TableManaged.init();
+        TableEditable.init();
     });
     $(function () {
         $(".page-sidebar-menu li").click(function () {

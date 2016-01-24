@@ -34,7 +34,7 @@ class AdminController extends Controller
                         'actions' => [
                             'index',
                             'content-add','content-list','content-view','content-del','content-edit',
-                            'category-add','category-list'
+                            'category-add','category-list','category-del','category-edit'
                         ],
                         'roles' => ['@'],
                     ]
@@ -115,10 +115,18 @@ class AdminController extends Controller
     public function actionContentEdit()
     {
         $data = Yii::$app->request->post();
+        $id = Yii::$app->request->get('id');
         if(!empty($data)){
-
+            $model = Content::findOne($id);
+            $model->title  = $data['title'];
+            $model->category_id  = $data['category_id'];
+            $contentResult = $model->save();
+            $contentDataResult = ContentData::updateAll(['content_data'=>$data['content']],'content_id=:content_id',[':content_id'=>$id]);
+            if(($contentResult == true) && ($contentDataResult > 0)){
+                //echo 'success';
+                return $this->redirect(['content-list']);
+            }
         }else{
-            $id = Yii::$app->request->get('id');
             $content = Content::findOne($id);
             $contentData = $content->allData;
             $data['id']  = $content['id'];
@@ -149,5 +157,21 @@ class AdminController extends Controller
     {
         $data['content'] = Category::find()->indexBy('id')->all();
         return $this->render('categoryList',$data);
+    }
+    public function actionCategoryEdit()
+    {
+        $id = Yii::$app->request->get('id');
+        $category = Category::findOne($id);
+        print_r($category);exit;
+        return $this->render('categoryEdit',$category);
+    }
+    public function actionCategoryDel()
+    {
+        $id = Yii::$app->request->get('id');
+        $category = Category::findOne(['id'=>$id]);
+        $categoryResult = $category->delete();
+        if($categoryResult > 0){
+            echo 'success';
+        }
     }
 }

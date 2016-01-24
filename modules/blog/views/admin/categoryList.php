@@ -48,6 +48,8 @@
                                 echo '<tr>';
                                 echo '<td>'.$value['id'].'</td>';
                                 echo '<td>'.$value['category'].'</td>';
+                                echo '<td><a href=index.php?r=blog/admin/category-edit&id='.$value['id'].' class="btn default btn-xs purple"><i class="fa fa-edit"></i> Edit </a>
+                                          <a href="javascript:;" class="btn default btn-xs black" onclick="delConent('.$value['id'].')"><i class="fa fa-trash-o"></i> Delete </a></td>';
                                 echo '</tr>';
                             }
                             ?>
@@ -60,3 +62,36 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function delConent(id){
+        $.confirm({
+            title:'waring',
+            content:'Are you sure you want to delete it?',
+            confirmButtonClass: 'btn-info',
+            cancelButtonClass: 'btn-danger',
+            confirm: function(){
+                $.ajax({
+                    url:'index.php?r=blog/admin/category-del',
+                    data:{id:id},
+                    type:'GET',
+                    success: function (data) {
+                        if(data === 'success'){
+                            $.alert({
+                                title:'success',
+                                content:'delete data success',
+                                confirmButtonClass: 'btn-info',
+                                confirm: function () {
+                                    window.location.reload();
+                                }
+                            });
+                        }
+                    },
+                    error:function(){
+                        alert('error');
+                    }
+                })
+            }
+        });
+
+    }
+</script>

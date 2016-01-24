@@ -41,13 +41,12 @@ echo Html::jsFile('@web/css/metro/bootstrap-markdown/lib/markdown.js');
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        <form action="index.php?r=blog/admin/content-edit" method="POST" id="form_sample_3" class="form-horizontal">
+                        <form action="index.php?r=blog/admin/content-edit&id=<?= $_GET['id'];?>" method="POST" id="form_sample_3" class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="control-label col-md-1">Title:</label>
                                     <div class="col-md-7">
                                         <input type="text" name="title" data-required="1" class="form-control" value="<?=$title;?>"/>
-                                        <input type="text" name="id" hidden value="<?=$id;?>"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
