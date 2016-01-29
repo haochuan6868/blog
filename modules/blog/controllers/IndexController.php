@@ -18,16 +18,21 @@ class IndexController extends Controller
     public $layout = 'main';
     public function actionIndex()
     {
-        $content = Content::find()->joinWith('allData')->all();
+        $categoryId = Yii::$app->request->get('id','');
+        if(empty($categoryId)) {
+            $content = Content::find()->joinWith('allData')->all();
+        }else{
+            $content = Content::find()->where(['category_id'=>$categoryId])->joinWith('allData')->all();
+        }
         $data = array();
-        foreach($content as $value){
+        foreach ($content as $value) {
             $val['id'] = $value->id;
             $val['title'] = $value->title;
             $val['content'] = $value->allData->content_data;
             $data['data'][] = $val;
         }
         $data['categories'] = Category::find()->asArray()->all();
-        return $this->render('index',$data);
+        return $this->render('index', $data);
     }
     public function actionCategory()
     {

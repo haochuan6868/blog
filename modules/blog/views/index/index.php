@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <h1>0101010101</h1>
+            <h1>Write less do more</h1>
 <!--            <h2 class="hide">PHP THAT DOESN'T HURT. CODE HAPPY &amp; ENJOY THE FRESH AIR.</h2>-->
 
             <img src="http://image.golaravel.com/e/b0/4e4bd788405aab87f03d26edc4ab4.png" alt="Laravel" class="hide">
@@ -37,7 +37,7 @@
                         <li class="nav-current" role="presentation"><a href="/">首页</a></li>
                         <?php foreach ($categories as $category): ?>
                             <li  role="presentation">
-                                <a href="index.php?r=blog/index/category&id=<?=$category['id'];?>" target="_blank"><?=$category['category'];?></a>
+                                <a href="index.php?r=blog/index/index&id=<?=$category['id'];?>"><?=$category['category'];?></a>
                             </li>
                         <?php endforeach;?>
                     </ul>
@@ -57,7 +57,7 @@
                 <?php foreach ($data as $value): ?>
                     <article id=61 class="post tag-lumen tag-xin-ban-ben-fa-bu">
                         <div class="post-head">
-                            <h1 class="post-title"><a href="/post/lumen-5-2-is-released/"><?=$value['title'];?></a></h1>
+                            <h1 class="post-title"><a href="index.php?r=blog/index/content&id=<?=$value['id'];?>"><?=$value['title'];?></a></h1>
                             <div class="post-meta">
                                 <span class="author">作者：<a href="/author/wangsai/">haochuan</a></span> &bull;
                                 <time class="post-date" datetime="2016年1月8日星期五上午10点33分" title="2016年1月8日星期五上午10点33分">2016年1月8日</time>
