@@ -82,5 +82,15 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/fitvids/1.1.0/jquery.fitvids.min.js"></script>
 <script src="http://cdn.bootcss.com/highlight.js/9.0.0/highlight.min.js"></script>
-<script src="js/laravel_js"></script>
+<script src="js/laravel_js"></script>'
+<script type="text/javascript">
+    $(function(){
+        $('.menu li a').click(function(){
+            $('.menu li').removeClass('nav-current');
+            $(this).parent().addClass('nav-current');
+
+        })
+
+    })
+</script>
 </body>

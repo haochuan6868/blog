@@ -19,12 +19,13 @@ class IndexController extends Controller
     public function actionIndex()
     {
         $categoryId = Yii::$app->request->get('id','');
+        $data = array();
         if(empty($categoryId)) {
             $content = Content::find()->joinWith('allData')->all();
         }else{
             $content = Content::find()->where(['category_id'=>$categoryId])->joinWith('allData')->all();
         }
-        $data = array();
+        $data['data'] = array();
         foreach ($content as $value) {
             $val['id'] = $value->id;
             $val['title'] = $value->title;
