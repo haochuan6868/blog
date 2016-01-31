@@ -5,6 +5,7 @@
  * Date: 2015/12/22
  * Time: 14:56
  */
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 ?>
 <!-- start header -->
 <header class="main-header"  style="background-image: url(http://image.golaravel.com/5/c9/44e1c4e50d55159c65da6a41bc07e.jpg)"">
@@ -34,11 +35,17 @@
                 </div>
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
-                        <li class="nav-current" role="presentation"><a href="/">首页</a></li>
+                        <?php if(empty($id)): ?>
+                            <li class="nav-current" role="presentation"><a href="/">首页</a></li>
+                            <?php else: ?>
+                            <li role="presentation"><a href="/">首页</a></li>
+                            <?php endif;?>
                         <?php foreach ($categories as $category): ?>
-                            <li  role="presentation">
-                                <a href="index.php?r=blog/index/index&id=<?=$category['id'];?>"><?=$category['category'];?></a>
-                            </li>
+                            <?php if($id == $category['id']): ?>
+                            <li class="nav-current" role="presentation"><a href="index.php?r=blog/index/index&id=<?=$category['id'];?>"><?=$category['category'];?></a></li>
+                            <?php else: ?>
+                            <li role="presentation"><a href="index.php?r=blog/index/index&id=<?=$category['id'];?>"><?=$category['category'];?></a></li>
+                            <?php endif;?>
                         <?php endforeach;?>
                     </ul>
                 </div>
